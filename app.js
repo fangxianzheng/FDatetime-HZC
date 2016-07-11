@@ -53,7 +53,10 @@ var o = new FDatetime({
 
 
 var yearScroll = new IScroll('#fd-year',{
-    snap: true
+    snap: 'li',
+    scrollbars:'custom',
+
+
 })
 
 /*
