@@ -11,7 +11,7 @@
     box-sizing: border-box;
 }
 body{
-    font-size:0.6rem;
+
     background-color:#eee;
 }
 .fd-time{
@@ -52,9 +52,19 @@ body{
     padding: 10px 0;
 }
 .fd-item{
-    flex:1;
-    -webkit-box-flex: 1;
+
+
 }
+.fd-item-year{
+    flex:2;
+}
+.fd-item-hour{
+    flex:1;
+}
+.fd-item-minute{
+    flex:1;
+}
+
 .fd-scroll-wrap{
     height:238px;
     overflow:hidden;
@@ -69,6 +79,7 @@ body{
         line-height:34px;
         width:100%;
         text-align:center;
+        font-size:16px;
     }
 }
 

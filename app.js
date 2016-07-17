@@ -23,29 +23,46 @@
             var html = '<li></li>\n<li></li>\n<li></li>';
             for(var i=0; i<daySpan;i++){
                 dayTime += dayMillisecond;
-                html += '<li data-date="'+ calculate(dayTime, 'normal') +'">' + calculate(dayTime, 'zh') + '</li>\n'
+                html += '<li data-date="'+ calculate(dayTime).normal +'">' + calculate(dayTime).zh + '</li>\n'
             }
             html = html +'<li></li>\n<li></li>\n<li></li>';
             return html
         },
         createHourLi:function(){
             var self = this;
-            var j = 1;
             var html = '<li></li>\n<li></li>\n<li></li>';
             for(var i = 0; i< 24; i++){
-                j++
                 i = i<10 ? '0' + i : i;
                 html += '<li>' + i + '</li>'
             }
-            console.log(html)
+            html = html +'<li></li>\n<li></li>\n<li></li>';
+            return html;
+        },
+        createMinute:function(){
+            var self = this;
+            var html = '<li></li>\n<li></li>\n<li></li>';
+            for(var j = 0; j< 60; j++){
+                j = j<10 ? '0' + j : j;
+                html += '<li>' + j + '</li>'
+            }
+            html = html +'<li></li>\n<li></li>\n<li></li>';
+            return html;
         },
         inseritLi:function(){
             var self = this;
-            $('#fd-year ul').html(self.createLi())
+            $('#fd-year ul').html(self.createYearLi())
             var yearScroll = new IScroll('#fd-year',{
                 snap: 'li'
-
-            })
+            });
+            $('#fd-hour ul').html(self.createHourLi());
+            var yearScroll = new IScroll('#fd-hour',{
+                snap: 'li'
+            });
+            $('#fd-minute ul').html(self.createMinute());
+            var yearScroll = new IScroll('#fd-minute',{
+                snap: 'li'
+            });
+            document.getElementById('fd-contain').addEventListener('touchmove',function (e) { e.preventDefault(); }, false)
         }
     }
 
@@ -86,12 +103,10 @@
                 day = '周六';
                 break
         }
-        if(/zh/.test(type)){
-            return month + '月' + date + '日 ' + day;
-        }else if(/normal/.test(type)){
-            return toLocaleDateString + ' ' + getHours + ':' + getMinutes + ':' +  getSeconds;
+        return dateType = {
+            zh:month + '月' + date + '日 ' + day ,
+            normal: toLocaleDateString + ' ' + getHours + ':' + getMinutes + ':' +  getSeconds
         }
-
     }
 
 
@@ -101,8 +116,8 @@
 
 
 var o = new FDatetime({
-    startTime:'2017-8-8',
-    endTime:'2017-9-3',
+    startTime:'2016-8-8',
+    endTime:'2017-10-3',
     defaultTime:'2016-9-10 10:00:00'
 })
 
