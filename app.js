@@ -4,6 +4,9 @@
 
 
 ;(function(win, IScroll){
+
+    var yearScroll, hourScroll ,minuteScroll;
+
     var FDatetime = function(opts){
         this.startDate = new Date(opts.startTime);
         this.endDate = new Date(opts.endTime);
@@ -33,7 +36,7 @@
             var html = '<li></li>\n<li></li>\n<li></li>';
             for(var i = 0; i< 24; i++){
                 i = i<10 ? '0' + i : i;
-                html += '<li>' + i + '</li>'
+                html += '<li>' + i + '时</li>'
             }
             html = html +'<li></li>\n<li></li>\n<li></li>';
             return html;
@@ -43,7 +46,7 @@
             var html = '<li></li>\n<li></li>\n<li></li>';
             for(var j = 0; j< 60; j++){
                 j = j<10 ? '0' + j : j;
-                html += '<li>' + j + '</li>'
+                html += '<li>' + j + '分</li>'
             }
             html = html +'<li></li>\n<li></li>\n<li></li>';
             return html;
@@ -51,19 +54,29 @@
         inseritLi:function(){
             var self = this;
             $('#fd-year ul').html(self.createYearLi())
-            var yearScroll = new IScroll('#fd-year',{
+            yearScroll = new IScroll('#fd-year',{
                 snap: 'li'
             });
             $('#fd-hour ul').html(self.createHourLi());
-            var yearScroll = new IScroll('#fd-hour',{
+            hourScroll = new IScroll('#fd-hour',{
                 snap: 'li'
             });
             $('#fd-minute ul').html(self.createMinute());
-            var yearScroll = new IScroll('#fd-minute',{
+            minuteScroll = new IScroll('#fd-minute',{
                 snap: 'li'
             });
-            document.getElementById('fd-contain').addEventListener('touchmove',function (e) { e.preventDefault(); }, false)
+            document.getElementById('fd-contain').addEventListener('touchmove',function (e) { e.preventDefault(); }, false);
+           self.onScrollEnd();
+        },
+        onScrollEnd: function(){
+            yearScroll.on('scrollEnd',function(e){
+                var scrollHeight = yearScroll.y;
+                var yearIndex = index(scrollHeight);
+                var yearValue = $('#fd-year li').eq(yearIndex).attr('data-date')
+                console.log(yearValue)
+            })
         }
+
     }
 
     /********私有方法************************************/
@@ -107,6 +120,11 @@
             zh:month + '月' + date + '日 ' + day ,
             normal: toLocaleDateString + ' ' + getHours + ':' + getMinutes + ':' +  getSeconds
         }
+    }
+    function index(scrollHeight){
+        var itemHeight = $('#fd-year li').height();
+        var index = Math.round(-scrollHeight/itemHeight) + 3;
+        return index;
     }
 
 

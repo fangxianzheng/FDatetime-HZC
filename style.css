@@ -27,6 +27,7 @@ body {
   clear: both; }
 
 .fd-head {
+  border-bottom: 1px solid #ccc;
   display: flex; }
   .fd-head .fd-cancel {
     float: left; }
@@ -60,7 +61,6 @@ body {
 .fd-scroll-wrap {
   height: 238px;
   overflow: hidden;
-  border-top: 1px solid #ccc;
   position: relative; }
   .fd-scroll-wrap ul {
     width: 100%; }
@@ -70,5 +70,12 @@ body {
     width: 100%;
     text-align: center;
     font-size: 16px; }
+  .fd-scroll-wrap .fd-select-div {
+    height: 34px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    position: absolute;
+    width: 100%;
+    top: calc(50% - 17px); }
 
 /*# sourceMappingURL=style.css.map */
