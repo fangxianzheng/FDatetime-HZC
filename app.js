@@ -3,7 +3,7 @@
  */
 
 
-;(function(win, IScroll){
+;(function(win, IScroll,$){
 
     var yearScroll, hourScroll ,minuteScroll;
 
@@ -184,11 +184,11 @@
 
 
     win.FDatetime = FDatetime;
-})(window,IScroll,undefined);
+})(window,IScroll,$,undefined);
 
 
 var o = new FDatetime({
-    startTime:'2016/7/19 8:8:8',
+    startTime:'2016/7/19 8:20:00',
     endTime:'2017-10-3',
     scrollEnd:function(date){
 
