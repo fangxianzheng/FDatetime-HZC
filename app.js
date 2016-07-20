@@ -8,9 +8,11 @@
     var yearScroll, hourScroll ,minuteScroll;
 
     var FDatetime = function(opts){
+        this.options = opts;
         this.startDate = new Date(opts.startTime);
+        this.startHour = this.startDate.getHours();
+        this.startMinutes = this.startDate.getMinutes();
         this.endDate = new Date(opts.endTime);
-        this.defaultDate = new Date(opts.defaultTime);
         this.inseritLi()
     }
 
@@ -36,7 +38,7 @@
             var html = '<li></li>\n<li></li>\n<li></li>';
             for(var i = 0; i< 24; i++){
                 i = i<10 ? '0' + i : i;
-                html += '<li>' + i + '时</li>'
+                html += '<li data-date=' + i + '>' + i + '时</li>'
             }
             html = html +'<li></li>\n<li></li>\n<li></li>';
             return html;
@@ -46,7 +48,7 @@
             var html = '<li></li>\n<li></li>\n<li></li>';
             for(var j = 0; j< 60; j++){
                 j = j<10 ? '0' + j : j;
-                html += '<li>' + j + '分</li>'
+                html += '<li data-date='+ j + '>' + j + '分</li>'
             }
             html = html +'<li></li>\n<li></li>\n<li></li>';
             return html;
@@ -65,19 +67,54 @@
             minuteScroll = new IScroll('#fd-minute',{
                 snap: 'li'
             });
+
+            //选中默认小时和分钟
+            hourScroll.goToPage(0, self.startHour)
+            minuteScroll.goToPage(0, this.startMinutes)
+
             document.getElementById('fd-contain').addEventListener('touchmove',function (e) { e.preventDefault(); }, false);
+
            self.onScrollEnd();
+
+            if(self.options.onSelected){
+                document.getElementById('fd-ok').addEventListener('click',function(e){
+                    self.options.onSelected(self.onScrollEnd())
+                },false)
+            }
+            if(self.options.onCancel){
+                document.getElementById('fd-cancel').addEventListener('click',function(e){
+                    self.options.onCancel(self.onScrollEnd())
+                },false)
+            }
         },
         onScrollEnd: function(){
+            var self = this;
+
+
+            var dateValueFn = function(){
+                var dateValue = yearValueFn() +' ' +  hourValueFn() + ':' + minuteValueFn();
+
+                //执行设置中的scrollEnd方法
+                if(self.options.scrollEnd){
+                    self.options.scrollEnd(dateValue)
+                }
+                return dateValue;
+            };
             yearScroll.on('scrollEnd',function(e){
-                var scrollHeight = yearScroll.y;
-                var yearIndex = index(scrollHeight);
-                var yearValue = $('#fd-year li').eq(yearIndex).attr('data-date')
-                console.log(yearValue)
-            })
+                dateValueFn()
+
+            });
+            hourScroll.on('scrollEnd',function(e){
+                dateValueFn()
+            });
+            minuteScroll.on('scrollEnd',function(e){
+                dateValueFn()
+            });
+
+            return dateValueFn()
         }
 
-    }
+    };
 
     /********私有方法************************************/
     function calculate(dayTime, type){
@@ -118,27 +155,51 @@
         }
         return dateType = {
             zh:month + '月' + date + '日 ' + day ,
-            normal: toLocaleDateString + ' ' + getHours + ':' + getMinutes + ':' +  getSeconds
+            normal: toLocaleDateString
         }
     }
-    function index(scrollHeight){
-        var itemHeight = $('#fd-year li').height();
+    function index($itemEle, scrollHeight){
+        var itemHeight = $itemEle.height();
         var index = Math.round(-scrollHeight/itemHeight) + 3;
         return index;
     }
-
+    function yearValueFn() {
+        var scrollHeight = yearScroll.y;
+        var yearIndex = index($('#fd-year li'), scrollHeight);
+        var yearValue = $('#fd-year li').eq(yearIndex).attr('data-date');
+        return yearValue;
+    }
+    function hourValueFn(){
+        var scrollHeight = hourScroll.y;
+        var hourIndex = index($('#fd-hour li'),scrollHeight);
+        var hourValue = $('#fd-hour li').eq(hourIndex).attr('data-date');
+        return hourValue
+    }
+    function minuteValueFn(){
+        var scrollHeight = minuteScroll.y;
+        var minuteIndex = index($('#fd-minute li'),scrollHeight);
+        var minuteValue = $('#fd-minute li').eq(minuteIndex).attr('data-date');
+        return minuteValue
+    }
 
 
     win.FDatetime = FDatetime;
-})(window,IScroll,undefined)
+})(window,IScroll,undefined);
 
 
 var o = new FDatetime({
-    startTime:'2016-8-8',
+    startTime:'2016/7/19 8:8:8',
     endTime:'2017-10-3',
-    defaultTime:'2016-9-10 10:00:00'
-})
+    scrollEnd:function(date){
 
+    },
+    onSelected:function(date){
+        console.log(date)
+    },
+    onCancel: function(date){
+
+    }
+})
 
 
 
