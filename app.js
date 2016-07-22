@@ -3,7 +3,7 @@
  */
 
 
-;(function(win, IScroll,$){
+;(function(win, IScroll){
 
     var yearScroll, hourScroll ,minuteScroll;
 
@@ -184,7 +184,7 @@
 
 
     win.FDatetime = FDatetime;
-})(window,IScroll,$,undefined);
+})(window,IScroll,undefined);
 
 
 var o = new FDatetime({
