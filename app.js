@@ -94,7 +94,7 @@
             var dateValueFn = function(){
                 var dateValue = yearValueFn() +' ' +  hourValueFn() + ':' + minuteValueFn();
                 var yearValueZh = new Date(yearValueFn());
-                var dateValueZh = yearValueZh.getFullYear() +'年'+ (yearValueZh.getMonth()+ 1) + '月' + yearValueZh.getDate() + '日 ' +  hourValueFn() + '时' + minuteValueFn() + '分';
+                var dateValueZh =(yearValueZh.getMonth()+ 1) + '月' + yearValueZh.getDate() + '日 ' +  hourValueFn() + ':' + minuteValueFn();
 
 
                 //执行设置中的scrollEnd方法
@@ -194,9 +194,10 @@ var o = new FDatetime({
     startTime:'2016/7/19 8:20:00',
     endTime:'2017-10-3',
     scrollEnd:function(date, dateZh){
-        console.log( dateZh)
+
     },
     onSelected:function(date, dateZh){
+        console.log( date)
         console.log( dateZh)
     },
     onCancel: function(date, dateZh){
