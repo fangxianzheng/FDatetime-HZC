@@ -78,12 +78,12 @@
 
             if(self.options.onSelected){
                 document.getElementById('fd-ok').addEventListener('click',function(e){
-                    self.options.onSelected(self.onScrollEnd())
+                    self.options.onSelected(self.onScrollEnd().dateValue, self.onScrollEnd().dateValueZh)
                 },false)
             }
             if(self.options.onCancel){
                 document.getElementById('fd-cancel').addEventListener('click',function(e){
-                    self.options.onCancel(self.onScrollEnd())
+                    self.options.onCancel(self.onScrollEnd().dateValue, self.onScrollEnd().dateValueZh)
                 },false)
             }
         },
@@ -93,12 +93,15 @@
 
             var dateValueFn = function(){
                 var dateValue = yearValueFn() +' ' +  hourValueFn() + ':' + minuteValueFn();
+                var yearValueZh = new Date(yearValueFn());
+                var dateValueZh = yearValueZh.getFullYear() +'年'+ (yearValueZh.getMonth()+ 1) + '月' + yearValueZh.getDate() + '日 ' +  hourValueFn() + '时' + minuteValueFn() + '分';
+
 
                 //执行设置中的scrollEnd方法
                 if(self.options.scrollEnd){
-                    self.options.scrollEnd(dateValue)
+                    self.options.scrollEnd(dateValue , dateValueZh)
                 }
-                return dateValue;
+                return {dateValue:dateValue, dateValueZh:dateValueZh};
             };
             yearScroll.on('scrollEnd',function(e){
                 dateValueFn()
@@ -190,13 +193,13 @@
 var o = new FDatetime({
     startTime:'2016/7/19 8:20:00',
     endTime:'2017-10-3',
-    scrollEnd:function(date){
-
+    scrollEnd:function(date, dateZh){
+        console.log( dateZh)
     },
-    onSelected:function(date){
-        console.log(date)
+    onSelected:function(date, dateZh){
+        console.log( dateZh)
     },
-    onCancel: function(date){
+    onCancel: function(date, dateZh){
 
     }
 })
