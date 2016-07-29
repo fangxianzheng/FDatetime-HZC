@@ -122,7 +122,8 @@
     /********私有方法************************************/
     function calculate(dayTime, type){
         var dayDate = new Date(dayTime);
-        var toLocaleDateString = dayDate.toLocaleDateString();
+        //var toLocaleDateString = dayDate.toLocaleDateString();     //safari和IOS下不兼容，显示为中文（好过头了）
+        var toLocaleDateString = dayDate.getFullYear() + '/' + (dayDate.getMonth() +1 ) + '/' + dayDate.getDate();
         var getHours = dayDate.getHours();
         var getMinutes = dayDate.getMinutes();
         var getSeconds = dayDate.getSeconds();
@@ -169,19 +170,19 @@
     function yearValueFn() {
         var scrollHeight = yearScroll.y;
         var yearIndex = index($('#fd-year li'), scrollHeight);
-        var yearValue = $('#fd-year li').eq(yearIndex).attr('data-date');
+        var yearValue = $('#fd-year li').eq(yearIndex).data('date');
         return yearValue;
     }
     function hourValueFn(){
         var scrollHeight = hourScroll.y;
         var hourIndex = index($('#fd-hour li'),scrollHeight);
-        var hourValue = $('#fd-hour li').eq(hourIndex).attr('data-date');
+        var hourValue = $('#fd-hour li').eq(hourIndex).data('date');
         return hourValue
     }
     function minuteValueFn(){
         var scrollHeight = minuteScroll.y;
         var minuteIndex = index($('#fd-minute li'),scrollHeight);
-        var minuteValue = $('#fd-minute li').eq(minuteIndex).attr('data-date');
+        var minuteValue = $('#fd-minute li').eq(minuteIndex).data('date');
         return minuteValue
     }
 
