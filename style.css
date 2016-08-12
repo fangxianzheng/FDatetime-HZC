@@ -19,66 +19,83 @@ body {
   right: 0;
   left: 0;
   background-color: #fff; }
-
-#fd-time .fd-clear_fl:after {
-  content: '';
-  display: block;
-  height: 0;
-  clear: both; }
-#fd-time .fd-head {
-  border-bottom: 1px solid #ccc;
-  display: flex; }
-  #fd-time .fd-head .fd-cancel {
-    float: left; }
-  #fd-time .fd-head .fd-ok {
-    float: right; }
-#fd-time .fd-head-item {
-  color: #04be02;
-  font-size: 18px;
-  height: 44px;
-  line-height: 44px;
-  flex-grow: 1;
-  -webkit-flex-grow: 1;
-  text-align: center; }
-#fd-time .fd-contain {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  padding: 10px 0; }
-#fd-time .fd-item .fd-mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.7)), linear-gradient(to top, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.7));
-  background-position: top, bottom;
-  background-size: 100% 100px;
-  background-repeat: no-repeat; }
-#fd-time .fd-item-year {
-  flex: 2; }
-#fd-time .fd-item-hour {
-  flex: 1; }
-#fd-time .fd-item-minute {
-  flex: 1; }
-#fd-time .fd-scroll-wrap {
-  height: 238px;
-  overflow: hidden;
-  position: relative; }
-  #fd-time .fd-scroll-wrap ul {
-    width: 100%; }
-  #fd-time .fd-scroll-wrap li {
-    height: 34px;
-    line-height: 34px;
-    width: 100%;
-    text-align: center;
-    font-size: 16px; }
-  #fd-time .fd-scroll-wrap .fd-select-div {
-    height: 34px;
-    border-top: 1px solid #ccc;
+  #fd-time .fd-clear_fl:after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both; }
+  #fd-time .fd-head {
     border-bottom: 1px solid #ccc;
-    position: absolute;
+    background-color: #2cc9bb;
+    overflow: hidden; }
+    #fd-time .fd-head .fd-cancel {
+      float: left;
+      height: 100%;
+      width: 2.6rem; }
+    #fd-time .fd-head .fd-ok {
+      float: right;
+      height: 100%;
+      width: 2.6rem; }
+  #fd-time .fd-head-item {
+    color: #fff;
+    font-size: 18px;
+    height: 44px;
+    line-height: 44px;
+    text-align: center; }
+  #fd-time .fd-center h6 {
+    font-size: 0.7rem;
+    line-height: 1.2;
+    padding-top: 0.4rem; }
+  #fd-time .fd-center p {
+    font-size: 0.6rem;
+    line-height: 1.2; }
+  #fd-time .fd-contain {
     width: 100%;
-    top: calc(50% - 17px); }
+    align-items: center;
+    padding: 10px 0; }
+  #fd-time .fd-item .fd-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: -webkit-linear-gradient(to bottom, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.7)), -webkit-linear-gradient(to top, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.7));
+    background-image: -o-linear-gradient(to bottom, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.7)), -o-linear-gradient(to top, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.7));
+    background-image: -moz-linear-gradient(to bottom, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.7)), -moz-linear-gradient(to top, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.7));
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.7)), linear-gradient(to top, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.7));
+    background-position: top, bottom;
+    background-size: 100% 100px;
+    background-repeat: no-repeat; }
+  #fd-time .fd-item-year {
+    overflow: hidden;
+    float: left;
+    width: 50%; }
+  #fd-time .fd-item-hour {
+    overflow: hidden;
+    float: left;
+    width: 25%; }
+  #fd-time .fd-item-minute {
+    overflow: hidden;
+    float: left;
+    width: 25%; }
+  #fd-time .fd-scroll-wrap {
+    height: 238px;
+    overflow: hidden;
+    position: relative; }
+    #fd-time .fd-scroll-wrap ul {
+      width: 100%; }
+    #fd-time .fd-scroll-wrap li {
+      height: 34px;
+      line-height: 34px;
+      width: 100%;
+      text-align: center;
+      font-size: 16px; }
+    #fd-time .fd-scroll-wrap .fd-select-div {
+      height: 34px;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      position: absolute;
+      width: 100%;
+      top: calc(50% - 17px); }
 
 /*# sourceMappingURL=style.css.map */

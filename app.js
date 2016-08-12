@@ -26,7 +26,7 @@
             var dayMillisecond = 3600 * 24 * 1000;
             var dayTime = startTime - dayMillisecond;
             var html = '<li></li>\n<li></li>\n<li></li>';
-            for(var i=0; i<daySpan;i++){
+            for(var i=0; i < daySpan; i++){
                 dayTime += dayMillisecond;
                 html += '<li data-date="'+ calculate(dayTime).normal +'">' + calculate(dayTime).zh + '</li>\n'
             }
@@ -190,21 +190,6 @@
     win.FDatetime = FDatetime;
 })(window,IScroll,undefined);
 
-
-var o = new FDatetime({
-    startTime:'2016/7/19 8:20:00',
-    endTime:'2017-10-3',
-    scrollEnd:function(date, dateZh){
-
-    },
-    onSelected:function(date, dateZh){
-        console.log( date)
-        console.log( dateZh)
-    },
-    onCancel: function(date, dateZh){
-
-    }
-})
 
 
 
