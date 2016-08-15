@@ -7,7 +7,7 @@
 ## 示例
 
 ![扫一扫](https://fangxianzheng.github.io/demo/FDatetime-HZC/demo1.png)
-[单个元素动画效果](https://fangxianzheng.github.io/demo/FDatetime-HZC/demo1)
+[日期空间效果](https://fangxianzheng.github.io/demo/FDatetime-HZC/demo1)
 
 ## 依赖
 
