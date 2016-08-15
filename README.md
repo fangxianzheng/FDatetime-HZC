@@ -44,9 +44,9 @@ zepto <https://github.com/madrobby/zepto>
 |------------------|----------|--------|----------------|
 | startTime              | 开始时间   | 无 （必填）    | 时间对象，如:new Date(); 时间字符串，如: '2016/8/12 19:26:00' |
 | endTime               | 结束时间    | 无（必填）     | 时间对象，如:new Date(); 时间字符串，如: '2016/8/12 19:26:00'     |
-| scrollEnd            | 滚动结束时的function |  function(date, dateZh)   |    随便写   |
-| onSelected      | 选择时间按后执行的function   | function(date, dateZh)） | 随便写|
-| onCancel        | 选择时间按后执行的function   | function(date, dateZh)） | 随便写|
+| scrollEnd            | 滚动结束时的function |  function(date, dateZh)   |    随便写，date为英文时间按字符串，dateZh为中文时间字符串   |
+| onSelected      | 选择时间按后执行的function   | function(date, dateZh)） | 随便写，date为英文时间按字符串，dateZh为中文时间字符串|
+| onCancel        | 选择时间按后执行的function   | function(date, dateZh)） | 随便写，date为英文时间按字符串，dateZh为中文时间字符串|
 
 注意：时间字符串不要写
 `
