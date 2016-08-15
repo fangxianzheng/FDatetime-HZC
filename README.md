@@ -4,6 +4,10 @@
 
 因公司需求，顺手做的时间控件，感觉还不错，放出来供大家使用。
 
+## 外观
+
+![截图](https://fangxianzheng.github.io/demo/FDatetime-HZC/demo1-screenshot.png)
+
 ## 示例
 
 ![扫一扫](https://fangxianzheng.github.io/demo/FDatetime-HZC/demo1.png)
