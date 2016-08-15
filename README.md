@@ -6,7 +6,8 @@
 
 ## 示例
 
-示例稍后上传
+![扫一扫](https://fangxianzheng.github.io/demo/FDatetime-HZC/demo1.png)
+[单个元素动画效果](https://fangxianzheng.github.io/demo/FDatetime-HZC/demo1)
 
 ## 依赖
 
