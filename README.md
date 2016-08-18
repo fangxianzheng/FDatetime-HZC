@@ -61,7 +61,7 @@ safari浏览器不支持（苹果真是开发中的IE，各种特例独行），
 
 ## 注意事项
 
-IScroll不能需要计算容器的长宽，所以初始化时不能把控件设置成`display:none`；如果必须隐藏，请将控件移除界面或者用
+IScroll初始化需要计算元素长宽，所以初始化时不能把控件设置成`display:none`；如果必须隐藏，请将控件移除界面或者用
 `
 position: "absolute";visibility: "hidden"; display: "block"
 `
