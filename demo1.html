@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0">
+    <script src="https://cdn.bootcss.com/zepto/1.1.6/zepto.js"></script>
+    <script src="build/iscroll-probe.js"></script>
+    <style>
+        #input-line{
+            position:relative;
+
+        }
+        #cover{
+            display:block;
+            position:absolute;
+            top:0;right:0;bottom:0;left:0;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+<div id="input-line">
+    <label for="dateTime">click me</label>
+    <input id="dateTime" name="dateTime" readonly />
+    <span id="cover"></span>
+</div>
+
+
+<div class="fd-time" id="fd-time" style="display:none;">
+    <div class="fd-head fd-clear_fl">
+        <div class="fd-head-item fd-cancel" id="fd-cancel">取消</div>
+
+        <div class="fd-head-item fd-ok" id="fd-ok">确认</div>
+        <div class="fd-head-item fd-center">
+
+        </div>
+    </div>
+    <div class="fd-contain fd-clear_fl" id="fd-contain">
+        <div class="fd-item fd-item-year">
+            <div class="fd-scroll-wrap" id="fd-year">
+                <ul></ul>
+                <div class="fd-mask"></div>
+                <div class="fd-select-div"></div>
+
+            </div>
+        </div>
+        <div class="fd-item fd-item-hour">
+            <div class="fd-scroll-wrap" id="fd-hour">
+                <ul></ul>
+                <div class="fd-mask"></div>
+                <div class="fd-select-div"></div>
+            </div>
+        </div>
+        <div class="fd-item fd-item-minute">
+            <div class="fd-scroll-wrap" id="fd-minute">
+                <ul></ul>
+                <div class="fd-mask"></div>
+                <div class="fd-select-div"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 18.75 + 'px'
+</script>
+<script src="FDatetime.js"></script>
+<script src="build/anime.js"></script>
+<script>
+
+
+    $('#fd-time').show();
+    var thatH = $('#fd-time').height();
+
+    var startTime = new Date();
+    var endTime = new Date(startTime);
+    endTime.setFullYear(endTime.getFullYear() + 1);
+
+    var o = new FDatetime({
+        //startTime:'2016/1/19 8:20:00',        可以是时间字符串
+        //endTime:'2017/01/3',
+        startTime: startTime,
+        endTime: endTime,
+        scrollEnd:function(date, dateZh){
+
+        },
+        onSelected:function(date, dateZh){
+            console.log( date)
+            console.log( dateZh)
+            $('#dateTime').val(dateZh)
+            anime({
+                targets:'#fd-time',
+                translateY: [thatH],
+                easing:'easeInSine',
+                duration:200
+            })
+        },
+        onCancel: function(date, dateZh){
+            anime({
+                targets:'#fd-time',
+                translateY: [thatH],
+                easing:'easeInSine',
+                duration:200
+            })
+        }
+    });
+    $('#fd-time').hide();
+
+
+    $('#input-line').on('click',function(e){
+
+        $('#fd-time').show();
+        anime({
+            targets:'#fd-time',
+            translateY: [thatH, 0],
+            easing:'easeInSine',
+            duration:200
+        })
+
+
+
+    })
+</script>
+</body>
+</html>
