@@ -23,10 +23,8 @@ zepto <https://github.com/madrobby/zepto>
 
 在页面中引入所需的样式和JS文件
 
-`
-<link rel="stylesheet" type="text/css" href="FDatetime.css" />
-<script src="FDatetime.js"></script>
-`
+`<link rel="stylesheet" type="text/css" href="FDatetime.css" />`
+`<script src="FDatetime.js"></script>`
 
 ````
  var o = new FDatetime({
