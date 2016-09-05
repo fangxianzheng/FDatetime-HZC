@@ -8,11 +8,21 @@
     var yearScroll, hourScroll ,minuteScroll;
 
     var FDatetime = function(opts){
-        this.options = opts;
+        this.options = opts; 
         this.startDate = new Date(opts.startTime);
         this.startHour = this.startDate.getHours();
         this.startMinutes = this.startDate.getMinutes();
         this.endDate = new Date(opts.endTime);
+        if(opts.defaultTime){
+            this.defaultDate = new Date(opts.defaultTime);
+            if(this.defaultDate.getTime() < this.startDate.getTime()){
+                console.error('默认时间不能比开始时间小')
+            }else if(this.defaultDate.getTime() > this.endDate.getTime()){
+                console.error('默认时间不能比结束时间大')
+            }
+        }
+        
+        
         this.inseritLi()
     }
 
@@ -69,8 +79,24 @@
             });
 
             //选中默认小时和分钟
-            hourScroll.goToPage(0, self.startHour)
-            minuteScroll.goToPage(0, this.startMinutes)
+            
+            if(self.defaultDate){
+                
+                var startDayTime = getMilliseconds(self.startDate);
+                var defaultDayTime = getMilliseconds(self.defaultDate);
+                var daysSapn = parseInt((defaultDayTime - startDayTime) / (1000 * 60 * 60 * 24));
+
+                yearScroll.goToPage(0,daysSapn)
+                console.log(yearValueFn())
+                
+                
+                hourScroll.goToPage(0, self.defaultDate.getHours())
+                minuteScroll.goToPage(0, self.defaultDate.getMinutes())
+            }else{
+                hourScroll.goToPage(0, self.startHour)
+                minuteScroll.goToPage(0, this.startMinutes)
+            }
+            
 
             document.getElementById('fd-contain').addEventListener('touchmove',function (e) { e.preventDefault(); }, false);
 
@@ -184,6 +210,14 @@
         var minuteIndex = index($('#fd-minute li'),scrollHeight);
         var minuteValue = $('#fd-minute li').eq(minuteIndex).data('date');
         return minuteValue
+    }
+    
+    //纯粹日期毫秒数
+    function getMilliseconds(dateObj){
+        var getFullYear = dateObj.getFullYear();
+        var getMonth = dateObj.getMonth();
+        var getDate = dateObj.getDate();
+        return new Date(getFullYear, getMonth, getDate).getTime();
     }
 
 
