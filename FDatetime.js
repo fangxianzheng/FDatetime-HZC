@@ -8,7 +8,7 @@
     var yearScroll, hourScroll ,minuteScroll;
 
     var FDatetime = function(opts){
-        this.options = opts; 
+        this.options = opts;
         this.startDate = new Date(opts.startTime);
         this.startHour = this.startDate.getHours();
         this.startMinutes = this.startDate.getMinutes();
@@ -21,8 +21,8 @@
                 console.error('默认时间不能比结束时间大')
             }
         }
-        
-        
+
+
         this.inseritLi()
     }
 
@@ -32,7 +32,9 @@
             var startTime = self.startDate.getTime();
             var endTime =  self.endDate.getTime();
             var millisecondSpan = endTime - startTime;
-            var daySpan = Math.ceil(millisecondSpan /1000/3600/24);
+            var endTimeDays =  Math.ceil(endTime/1000/3600/24);
+            var startTimeDays = Math.floor(startTime/1000/3600/24);
+            var daySpan = endTimeDays - startTimeDays + 1;
             var dayMillisecond = 3600 * 24 * 1000;
             var dayTime = startTime - dayMillisecond;
             var html = '<li></li>\n<li></li>\n<li></li>';
@@ -79,24 +81,24 @@
             });
 
             //选中默认小时和分钟
-            
+
             if(self.defaultDate){
-                
+
                 var startDayTime = getMilliseconds(self.startDate);
                 var defaultDayTime = getMilliseconds(self.defaultDate);
                 var daysSapn = parseInt((defaultDayTime - startDayTime) / (1000 * 60 * 60 * 24));
 
                 yearScroll.goToPage(0,daysSapn)
                 console.log(yearValueFn())
-                
-                
+
+
                 hourScroll.goToPage(0, self.defaultDate.getHours())
                 minuteScroll.goToPage(0, self.defaultDate.getMinutes())
             }else{
                 hourScroll.goToPage(0, self.startHour)
                 minuteScroll.goToPage(0, this.startMinutes)
             }
-            
+
 
             document.getElementById('fd-contain').addEventListener('touchmove',function (e) { e.preventDefault(); }, false);
 
@@ -211,7 +213,7 @@
         var minuteValue = $('#fd-minute li').eq(minuteIndex).data('date');
         return minuteValue
     }
-    
+
     //纯粹日期毫秒数
     function getMilliseconds(dateObj){
         var getFullYear = dateObj.getFullYear();
@@ -223,11 +225,3 @@
 
     win.FDatetime = FDatetime;
 })(window,IScroll,undefined);
-
-
-
-
-
-
-
-
